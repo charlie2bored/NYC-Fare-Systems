@@ -117,8 +117,8 @@ This is an open analysis project. Contributions welcome:
 
 ## 📞 Contact
 
-**Project Author**: [Your Name]  
-**Email**: [your.email@example.com]
+**Project Author**: Charles Vargas  
+**Email**: iamcharlesvargas@gmail.com
 
 ## 📄 License
 
