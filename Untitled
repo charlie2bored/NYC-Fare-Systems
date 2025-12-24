@@ -1,0 +1,29 @@
+# MTA Distance-Based Fare Analysis 🚇
+
+## 📌 Project Overview
+An analysis of NYC Subway ridership data to evaluate the financial and social impact of transitioning from a flat $2.90 fare to a distance-based pricing model.
+
+## 📊 Quick Stats
+- **Proposed Annual Revenue:** $3.74 Billion
+- **Baseline Annual Revenue:** $3.46 Billion
+- **Revenue Delta:** +$277.9 Million
+- **% of Riders Paying Less:** 29%
+
+## 📂 Repository Structure
+- `/data`: Contains CSV files (Master_Stations, 1M_Stop_Pairings, etc.)
+- `main.py`: Python script for Haversine distance and revenue scaling.
+- `mta_final_analysis.csv`: The processed output dataset.
+
+## ⚙️ Methodology
+1. **Distance Calculation:** Used the Haversine formula to determine the shortest path between station coordinates.
+2. **Fare Logic:** $2.00 Base + ($0.24 * Miles).
+3. **Scaling:** Hourly ridership data was scaled to match the actual 2024 MTA annual total of 1.19B riders.
+
+## 🚀 How to Run
+1. Clone the repo: `git clone [YOUR_LINK]`
+2. Install dependencies: `pip install pandas numpy`
+3. Run analysis: `python main.py`
+
+## 🔗 Links
+- [Original MTA Data Source](https://new.mta.info/reports-and-charts/subway-ridership)
+- [Interactive Presentation Website]([LINK_TO_YOUR_SITE])

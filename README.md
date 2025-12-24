@@ -1,0 +1,127 @@
+# NYC Subway Fare Analysis: Distance-Based vs Flat Fare Systems
+
+[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
+[![pandas](https://img.shields.io/badge/pandas-1.3+-orange.svg)](https://pandas.pydata.org/)
+[![matplotlib](https://img.shields.io/badge/matplotlib-3.5+-green.svg)](https://matplotlib.org/)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
+## 📊 Overview
+
+This comprehensive analysis examines whether New York City's current flat subway fare system ($2.90 per ride) should be replaced with distance-based pricing. Using 1,000,000+ origin-destination trip records from the MTA, this study evaluates equity impacts, revenue implications, and international best practices.
+
+**Key Finding**: Distance-based fares ($2.00 + $0.24/mile) would generate **$280.5 million additional annual revenue** (+8.1%) while providing fare relief for 29% of trips.
+
+## 🎯 Research Question
+
+Should NYC modernize its subway fare system from a flat $2.90 fare to distance-based pricing that charges users based on service consumed?
+
+## 📋 Quick Results
+
+### Revenue Impact
+- **Proposed Distance-Based Model**: $3.75 Billion annually
+- **Current Flat Fare System**: $3.47 Billion annually  
+- **Annual Revenue Increase**: $280.5 Million (+8.1%)
+
+### Fare Impact on Riders
+- **Winners (Pay Less)**: 290,758 trips (29.1%)
+- **Losers (Pay More)**: 709,242 trips (70.9%)
+- **Neutral (Same Fare)**: 0 trips (0.0%)
+
+## 🚀 Quick Start
+
+### Prerequisites
+```bash
+pip install pandas numpy matplotlib
+```
+
+### Run the Analysis
+```bash
+python main.py
+```
+
+## 📊 Methodology
+
+### Distance Calculation
+- **Haversine Formula**: Earth radius = 3958.8 miles
+- **Fare Model**: $2.00 base + $0.24 per mile
+- **Annual Scaling**: Hourly ridership scaled to MTA's annual total of 1.19 billion rides
+
+### Data Sources
+- **MTA Origin-Destination Data**: 1,000,000+ subway trips
+- **MTA GTFS Feeds**: Station coordinates and network data
+- **International Comparisons**: Fare structures from global cities
+
+## 💡 Key Insights
+
+### 1. **Revenue Generation**
+Distance-based pricing generates significant additional revenue for MTA improvements while maintaining system accessibility.
+
+### 2. **Equity Considerations**
+Short-distance commuters (29% of trips) receive immediate fare relief, while longer commutes contribute proportionally to system maintenance.
+
+### 3. **Technology Ready**
+NYC's OMNY contactless payment system can support distance-based fares with tap-in/tap-out functionality.
+
+## 🛡️ Recommended Solution
+
+**Distance-Based Fare System ($2.00 + $0.24/mile):**
+- **Base Fare**: $2.00
+- **Distance Rate**: $0.24 per mile
+- **Equity Protections**: Maintain senior/disabled discounts and free transfers
+
+**Benefits:**
+- ✅ **Fair Pricing**: Users pay for service consumed
+- ✅ **Revenue Positive**: +$280.5M annually for system improvements
+- ✅ **Proven Technology**: OMNY system ready for implementation
+- ✅ **Global Standard**: Aligns with international best practices
+
+## 📁 Project Structure
+
+```
+├── main.py                 # Main analysis script
+├── data/                   # Data files (use Git LFS for large files)
+│   ├── Master_Stations.csv
+│   ├── All_Stops.csv
+│   ├── Fare_Structures.csv
+│   └── 1M_Stop_Pairings.csv  # Large file - use Git LFS
+├── mta_final_analysis.csv  # Results output (use Git LFS)
+├── Executive_Summary.md    # Key findings
+└── README.md              # This file
+```
+
+## 🔧 Technical Details
+
+### Data Processing
+- **Input**: Raw MTA OD data with station coordinates
+- **Distance Calculation**: Haversine formula implementation
+- **Fare Modeling**: Multiple scenarios with revenue calculations
+- **Annual Scaling**: 557.33x factor to reach actual MTA annual ridership
+
+### Analysis Stack
+- **pandas**: Data manipulation and analysis
+- **numpy**: Numerical computations
+- **matplotlib**: Data visualization
+
+## 🤝 Contributing
+
+This is an open analysis project. Contributions welcome:
+
+1. Fork the repository
+2. Create a feature branch
+3. Add your analysis or improvements
+4. Submit a pull request
+
+## 📞 Contact
+
+**Project Author**: [Your Name]  
+**Email**: [your.email@example.com]
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+**⭐ Star this repository if you found the analysis helpful!**
+
+*This analysis demonstrates how data science can inform public policy decisions, showing that NYC's subway fare system is due for modernization to align with global best practices while maintaining equity and revenue stability.*

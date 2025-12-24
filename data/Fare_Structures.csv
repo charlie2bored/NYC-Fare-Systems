@@ -1,0 +1,21 @@
+City,System,Fare_Type,Cost_Local_Currency,Currency,Cost_USD,Distance_km,Notes
+NYC,Flat,Single,2.9,USD,2.9,,Flat fare per swipe
+NYC,Flat,7-Day Unlimited,34,USD,34,,Unlimited rides
+NYC,Flat,30-Day Unlimited,132,USD,132,,Unlimited rides
+London,Zone,Zone 1 Peak,2.8,GBP,3.5,,Central London only
+London,Zone,Zone 1 Off-Peak,2.7,GBP,3.38,,Central London only
+London,Zone,Zone 1-2 Peak,3.4,GBP,4.24,,Central + inner
+London,Zone,Zone 1-6 Peak,7.2,GBP,8.99,,All zones
+Tokyo,Distance,1-6 km,180,JPY,1.2,3.5,Base fare
+Tokyo,Distance,7-11 km,220,JPY,1.45,9,Mid distance
+Tokyo,Distance,12-19 km,270,JPY,1.78,15.5,Mid-long distance
+Tokyo,Distance,20-27 km,320,JPY,2.11,23.5,Long distance
+Tokyo,Distance,28+ km,330,JPY,2.18,30,Maximum
+Seoul,Distance,0-10 km,1400,KRW,1.05,5,Base fare
+Seoul,Distance,10-15 km,1500,KRW,1.13,12.5,Additional distance
+Seoul,Distance,15+ km (per 5km),100,KRW,0.08,,Per 5km increment
+Berlin,Zone,AB (Berlin),3.5,EUR,3.8,,City zones
+Berlin,Zone,ABC (Berlin + outer),4.3,EUR,4.67,,City + surrounding
+Washington DC,Distance,Peak,2.25,USD,2.25,5,Rush hour
+Washington DC,Distance,Off-Peak,2,USD,2,5,Non-peak
+Washington DC,Distance,Weekend,2,USD,2,5,Saturday/Sunday
