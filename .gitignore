@@ -21,10 +21,6 @@ wheels/
 *.egg
 MANIFEST
 
-# Large data files (use Git LFS for these)
-data/1M_Stop_Pairings.csv
-mta_final_analysis.csv
-
 # Temporary files
 *.tmp
 *.temp
@@ -63,3 +59,7 @@ logs/
 
 # Streamlit
 .streamlit/
+
+# Large data files (download from MTA or generate via script)
+data/1M_Stop_Pairings.csv
+mta_final_analysis.csv
