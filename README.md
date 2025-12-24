@@ -3,7 +3,7 @@
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
 [![pandas](https://img.shields.io/badge/pandas-1.3+-orange.svg)](https://pandas.pydata.org/)
 [![matplotlib](https://img.shields.io/badge/matplotlib-3.5+-green.svg)](https://matplotlib.org/)
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ## 📊 Overview
 
@@ -117,8 +117,8 @@ This is an open analysis project. Contributions welcome:
 
 ## 📞 Contact
 
-**Project Author**: [Your Name]  
-**Email**: [your.email@example.com]
+**Project Author**: Charles Vargas  
+**Email**: iamcharlesvargas@gmail.com
 
 ## 📄 License
 
