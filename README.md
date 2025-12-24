@@ -22,7 +22,7 @@ This comprehensive analysis examines whether New York City's current flat subway
 Due to GitHub file size limits, these large datasets must be downloaded separately:
 
 1. **`data/1M_Stop_Pairings.csv`** (211MB) - MTA Origin-Destination data
-   📥 [Download from MTA Developer Resources](https://new.mta.info/developers)
+   📥 [Download from MTA Open Data](https://data.ny.gov/Transportation/MTA-Subway-Origin-and-Destination-Ridership-Estimat/uhf3-t34z)
    
 2. **`mta_final_analysis.csv`** (266MB) - Complete analysis results
    ▶️ **Generate by running:** `python main.py`
@@ -97,7 +97,7 @@ NYC's OMNY contactless payment system can support distance-based fares with tap-
 
 ### Data Processing
 - **Input**: Raw MTA OD data with station coordinates
-- **极速赛车开奖结果历史记录**: Haversine formula implementation
+- **Distance Calculation**: Haversine formula implementation
 - **Fare Modeling**: Multiple scenarios with revenue calculations
 - **Annual Scaling**: 557.33x factor to reach actual MTA annual ridership
 
@@ -112,7 +112,7 @@ This is an open analysis project. Contributions welcome:
 
 1. Fork the repository
 2. Create a feature branch
-极速赛车开奖结果历史记录. Add your analysis or improvements
+3. Add your analysis or improvements
 4. Submit a pull request
 
 ## 📞 Contact
@@ -122,7 +122,7 @@ This is an open analysis project. Contributions welcome:
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](极速赛车开奖结果历史记录) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
