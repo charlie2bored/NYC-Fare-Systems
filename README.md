@@ -22,7 +22,7 @@ This comprehensive analysis examines whether New York City's current flat subway
 Due to GitHub file size limits, these large datasets must be downloaded separately:
 
 1. **`data/1M_Stop_Pairings.csv`** (211MB) - MTA Origin-Destination data
-   📥 [Download from MTA Open Data](https://data.ny.gov/Transportation/MTA-Subway-Origin-and-Destination-Ridership-Estimat/uhf3-t34z)
+   📥 [Download CSV directly](https://data.ny.gov/api/views/uhf3-t34z/rows.csv?accessType=DOWNLOAD)
    
 2. **`mta_final_analysis.csv`** (266MB) - Complete analysis results
    ▶️ **Generate by running:** `python main.py`
