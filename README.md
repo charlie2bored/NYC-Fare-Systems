@@ -1,11 +1,9 @@
-![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
-
 # NYC Subway Fare Analysis: Distance-Based vs Flat Fare Systems
 
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
 [![pandas](https://img.shields.io/badge/pandas-1.3+-orange.svg)](https://pandas.pydata.org/)
 [![matplotlib](https://img.shields.io/badge/matplotlib-3.5+-green.svg)](https://matplotlib.org/)
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ## 📊 Overview
 
