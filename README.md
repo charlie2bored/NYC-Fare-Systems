@@ -150,3 +150,28 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **⭐ Star this repository if you found the analysis helpful!**
 
 *This analysis demonstrates how data science can inform public policy decisions, showing that NYC's subway fare system is due for modernization to align with global best practices while maintaining equity and revenue stability.*
+
+---
+
+## 📚 Sources & References
+
+Every figure cited in the analysis or on the [accompanying website](https://github.com/charlie2bored/NYC-Fare-Systems-Website) is traceable to a public source.
+
+### Data Sources
+- [**MTA Subway Origin-Destination Ridership Estimate**](https://data.ny.gov/Transportation/MTA-Subway-Origin-Destination-Ridership-Estimate-2/jsu2-fbtj) — NY Open Data. Source of the 1M origin-destination trip sample (`1M_Stop_Pairings.csv`).
+- [**MTA Developer Resources (GTFS)**](https://new.mta.info/developers) — Station coordinates, line assignments, and complex (transfer) IDs powering `Master_Stations.csv`.
+- [**MTA 2024 Annual Subway Ridership: 1,194,866,357**](https://new.mta.info/agency/new-york-city-transit/subway-bus-ridership-2024) — Official annual total used as the sample-to-year scaling denominator.
+
+### MTA Financial Figures
+- [**MTA Finance Committee Financial Performance Report (May 2025)**](https://www.mta.info/document/174041) — NYC Transit bus farebox revenue: $614.8M (2024 actual), $687.6M (2025 projected). Basis for the "$600M–$750M" bus-revenue range cited in the conclusion.
+- [**NYS Comptroller — MTA Operating Revenue Trends (2026)**](https://www.osc.ny.gov/files/reports/pdf/report-4-2026.pdf) — Independent confirmation of MTA farebox revenue trends post-pandemic.
+- [**NYS Comptroller — Fare Revenue Considerations for the MTA**](https://www.osc.ny.gov/reports/osdc/fare-revenue-considerations-metropolitan-transportation-authority) — Background on the MTA's farebox structure and revenue mix.
+
+### Policy Context (Mamdani Free-Buses Proposal)
+- [**CBS New York — Mamdani's free-buses plan and how it gets paid for**](https://www.cbsnews.com/newyork/news/zohran-mamdani-new-york-city-free-buses/) — Administration's $700M cost estimate.
+- [**NY1 — Mamdani creates new role focused on fast, free buses (May 2026)**](https://ny1.com/nyc/all-boroughs/traffic_and_transit/2026/05/11/meet-mamdani-senior-advisor-for-fast-and-free-buses) — Confirms the proposal is active policy under the current administration.
+- [**amNewYork — Fiscal watchdog on the cost of fare-free buses**](https://www.amny.com/news/fiscal-watchdog-mamdanis-free-bus-not-affordable-fair-fares-expansion/) — Independent ~$900M estimate; MTA's own estimate (~$1B) factors in induced demand.
+
+### Reproducibility
+- Full pipeline, tests, and graph-construction code: this repository (`nycfare/`).
+- The accompanying [website source](https://github.com/charlie2bored/NYC-Fare-Systems-Website) for the visualization and write-up.
