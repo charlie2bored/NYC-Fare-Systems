@@ -60,6 +60,13 @@ logs/
 # Streamlit
 .streamlit/
 
-# Large data files (download from MTA or generate via script)
+# Large data files (download via scripts/download_data.py or generate via main.py)
 data/1M_Stop_Pairings.csv
+data/1M_Stop_Pairings.csv.gz
+data/*.part
 mta_final_analysis.csv
+haversine_results.csv
+network_results.csv
+
+# Test cache
+.pytest_cache/

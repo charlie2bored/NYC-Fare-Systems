@@ -1,105 +1,90 @@
-import pandas as pd
-import numpy as np
+"""CLI for the MTA distance-based fare analysis.
 
-# --- 1. CONFIGURATION & CONSTANTS ---
-FILE_PATH = 'data/1M_Stop_Pairings.csv' # Correct path to data directory
-ANNUAL_RIDERSHIP_2024 = 1194866357  # Actual total from MTA data
-BASE_FARE = 2.00
-PER_MILE_RATE = 0.24
-CURRENT_FLAT_FARE = 2.90
-EARTH_RADIUS_MILES = 3958.8
+Examples
+--------
+    python main.py
+    python main.py --rate 0.30 --base 1.75
+    python main.py --distance-method network --stations data/All_Stops.csv
+    python main.py --no-sensitivity --output mta_final_analysis.csv
+"""
+from __future__ import annotations
 
-# Required column names based on the actual CSV structure
-REQUIRED_COLS = [
-    'origin_latitude', 'origin_longitude', 
-    'destination_latitude', 'destination_longitude', 
-    'estimated_average_ridership'
-]
+import argparse
+from pathlib import Path
 
-# --- 2. DATA LOADING & VALIDATION ---
-def load_and_validate_data(path):
-    try:
-        df = pd.read_csv(path)
-        print(f"Data loaded successfully. Shape: {df.shape}")
-        print(f"Available columns: {df.columns.tolist()}")
-        
-        # Check for missing columns
-        missing = [col for col in REQUIRED_COLS if col not in df.columns]
-        if missing:
-            raise ValueError(f"Missing columns in CSV: {missing}")
-        
-        # Clean Data: Remove rows with missing coordinates or zero ridership
-        initial_count = len(df)
-        df = df.dropna(subset=REQUIRED_COLS)
-        df = df[df['estimated_average_ridership'] > 0]
-        
-        # Convert ridership to float to preserve decimals (critical for accuracy)
-        df['estimated_average_ridership'] = pd.to_numeric(df['estimated_average_ridership'], errors='coerce')
-        
-        print(f"Data Cleaned: {len(df)}/{initial_count} rows valid.")
-        return df
-    except Exception as e:
-        print(f"Critical Error: {e}")
-        exit()
+from nycfare.pipeline import AnalysisConfig, run_analysis
 
-# --- 3. CORE CALCULATIONS ---
-def calculate_haversine(lat1, lon1, lat2, lon2):
-    """Accurate distance calculation using Haversine formula"""
-    lat1, lon1, lat2, lon2 = map(np.radians, [lat1, lon1, lat2, lon2])
-    dlat, dlon = lat2 - lat1, lon2 - lon1
-    a = np.sin(dlat/2)**2 + np.cos(lat1) * np.cos(lat2) * np.sin(dlon/2)**2
-    return 2 * np.arcsin(np.sqrt(a)) * EARTH_RADIUS_MILES
 
-# Execute
-print("Starting MTA Fare Analysis...")
-df = load_and_validate_data(FILE_PATH)
+def parse_args() -> AnalysisConfig:
+    p = argparse.ArgumentParser(description=__doc__)
+    p.add_argument(
+        "--od-path",
+        type=Path,
+        default=Path("data/1M_Stop_Pairings.csv"),
+        help="origin-destination CSV (default: data/1M_Stop_Pairings.csv)",
+    )
+    p.add_argument(
+        "--stations-path",
+        type=Path,
+        default=Path("data/Master_Stations.csv"),
+        help="station list CSV. For --distance-method network this must be "
+        "Master_Stations.csv (has line + complex_id).",
+    )
+    p.add_argument("--base", type=float, default=2.00, help="base fare in dollars")
+    p.add_argument("--rate", type=float, default=0.24, help="per-mile rate in dollars")
+    p.add_argument("--flat-fare", type=float, default=2.90, help="current flat fare to compare against")
+    p.add_argument(
+        "--annual-ridership",
+        type=float,
+        default=1_194_866_357,
+        help="annual MTA ridership for scaling (default: 2024 actual)",
+    )
+    p.add_argument(
+        "--distance-method",
+        choices=["haversine", "network"],
+        default="haversine",
+    )
+    p.add_argument(
+        "--output",
+        type=Path,
+        default=None,
+        help="if set, write per-row results to this CSV",
+    )
+    p.add_argument("--no-sensitivity", action="store_true")
+    args = p.parse_args()
 
-# Calculate Distance & Fare
-print("Calculating distances and fares...")
-df['distance_mi'] = calculate_haversine(
-    df['origin_latitude'], df['origin_longitude'],
-    df['destination_latitude'], df['destination_longitude']
-)
-df['proposed_fare'] = BASE_FARE + (df['distance_mi'] * PER_MILE_RATE)
+    return AnalysisConfig(
+        od_path=args.od_path,
+        stations_path=args.stations_path,
+        base_fare=args.base,
+        per_mile_rate=args.rate,
+        flat_fare=args.flat_fare,
+        annual_ridership=args.annual_ridership,
+        distance_method=args.distance_method,
+        output_path=args.output,
+        run_sensitivity=not args.no_sensitivity,
+    )
 
-# --- 4. REVENUE ANNUALIZATION ---
-# Calculate scaling factor: Actual Annual Rides / Sum of Sample Hourly Rides
-sample_hourly_sum = df['estimated_average_ridership'].sum()
-annual_scale_factor = ANNUAL_RIDERSHIP_2024 / sample_hourly_sum
 
-print(f"Sample hourly ridership sum: {sample_hourly_sum:,.0f}")
-print(f"Annual scaling factor: {annual_scale_factor:,.2f}x")
+def main() -> None:
+    cfg = parse_args()
+    print(
+        f"Running analysis: distance={cfg.distance_method}, "
+        f"fare=${cfg.base_fare:.2f} + ${cfg.per_mile_rate:.2f}/mi, "
+        f"flat=${cfg.flat_fare:.2f}"
+    )
+    out = run_analysis(cfg)
 
-# Proposed Annual Revenue
-df['annual_rev_proposed'] = (df['proposed_fare'] * df['estimated_average_ridership']) * annual_scale_factor
+    print(out.revenue.pretty())
+    print(
+        f"\nBreakeven vs flat fare: {out.breakeven_mi:.2f} mi "
+        f"(trips longer than this pay more by construction)"
+    )
 
-# Current Annual Revenue (Flat $2.90)
-df['annual_rev_flat'] = (CURRENT_FLAT_FARE * df['estimated_average_ridership']) * annual_scale_factor
+    if out.sensitivity is not None:
+        print("\nSensitivity to short-trip sampling weight:")
+        print(out.sensitivity.to_string(index=False))
 
-# --- 5. FINAL RESULTS ---
-total_proposed = df['annual_rev_proposed'].sum()
-total_flat = df['annual_rev_flat'].sum()
 
-print("\n" + "="*50)
-print("FINAL REVENUE PROJECTION")
-print("="*50)
-print(f"Proposed Model Total: ${total_proposed:,.2f}")
-print(f"Current Flat Total:   ${total_flat:,.2f}")
-print(f"Annual Delta:         ${total_proposed - total_flat:,.2f}")
-print(f"Percentage Change:    {(total_proposed - total_flat) / total_flat * 100:+.1f}%")
-print("="*50)
-
-# Additional insights
-winners = len(df[df['proposed_fare'] < CURRENT_FLAT_FARE])
-losers = len(df[df['proposed_fare'] > CURRENT_FLAT_FARE])
-neutral = len(df[df['proposed_fare'] == CURRENT_FLAT_FARE])
-
-print(f"\nFare Impact Analysis:")
-print(f"Winners (pay less): {winners:,} trips ({winners/len(df)*100:.1f}%)")
-print(f"Losers (pay more):  {losers:,} trips ({losers/len(df)*100:.1f}%)")
-print(f"Neutral (same):     {neutral:,} trips ({neutral/len(df)*100:.1f}%)")
-
-# Save results for GitHub
-output_file = 'mta_final_analysis.csv'
-df.to_csv(output_file, index=False)
-print(f"\nResults saved to: {output_file}")
+if __name__ == "__main__":
+    main()
