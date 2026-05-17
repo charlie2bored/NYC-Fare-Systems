@@ -118,14 +118,15 @@ NYC's OMNY contactless payment system can support distance-based fares with tap-
 
 ### Data Processing
 - **Input**: Raw MTA OD data with station coordinates
-- **Distance Calculation**: Haversine formula implementation
-- **Fare Modeling**: Multiple scenarios with revenue calculations
-- **Annual Scaling**: 557.33x factor to reach actual MTA annual ridership
+- **Distance Calculation**: Haversine (great-circle) and Network (subway graph shortest-path), selectable via `--distance-method`
+- **Fare Modeling**: Multiple scenarios with revenue calculations; sensitivity analysis on the annual-scaling assumption
+- **Annual Scaling**: 557.33× factor to reach actual MTA annual ridership
 
 ### Analysis Stack
-- **pandas**: Data manipulation and analysis
-- **numpy**: Numerical computations
+- **pandas**, **numpy**: Data manipulation and numerical computation
+- **networkx**: Subway graph + Dijkstra shortest-path
 - **matplotlib**: Data visualization
+- **pytest**: 19 unit tests covering distance, fare, revenue, and graph construction
 
 ## 🤝 Contributing
 
