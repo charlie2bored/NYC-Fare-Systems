@@ -96,7 +96,7 @@ Two methods, selectable via `--distance-method`:
 Distance-based pricing generates significant additional revenue for MTA improvements while maintaining system accessibility.
 
 ### 2. **Equity Considerations**
-Short-distance commuters (29% of trips) receive immediate fare relief, while longer commutes contribute proportionally to system maintenance.
+Short-distance commuters (14.8% of trips under network distance, 29% under the original Haversine model) receive immediate fare relief, while longer commutes contribute proportionally to system maintenance. The drop from 29% → 14.8% reflects that actual subway routes are longer than crow-flies estimates, so fewer trips clear the 3.75-mi breakeven.
 
 ### 3. **Technology Ready**
 NYC's OMNY contactless payment system can support distance-based fares with tap-in/tap-out functionality.
@@ -110,7 +110,7 @@ NYC's OMNY contactless payment system can support distance-based fares with tap-
 
 **Benefits:**
 - ✅ **Fair Pricing**: Users pay for service consumed
-- ✅ **Revenue Positive**: +$280.5M annually for system improvements
+- ✅ **Revenue Positive**: +$913M annually under network-distance methodology (+$280.5M under original Haversine)
 - ✅ **Proven Technology**: OMNY system ready for implementation
 - ✅ **Global Standard**: Aligns with international best practices
 
