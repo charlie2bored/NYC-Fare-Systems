@@ -12,7 +12,7 @@ Sensitivity: Re-weighting short trips by 0.5×–1.5× (to test the sample's rep
 
 Key Findings (v1 — Haversine, original methodology, kept for comparison):
 
-Revenue Surplus: The original model generated $3.74 Billion annually, a $277.9 Million (8%) increase over the current flat-fare system.
+Revenue Surplus: The original model generated $3.75 Billion annually, a $280.5 Million (8.1%) increase over the current flat-fare system.
 
 Commuter Relief: 29% of all trips were cheaper under this model.
 

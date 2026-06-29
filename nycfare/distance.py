@@ -4,8 +4,9 @@ Two metrics are exposed via ``compute_distance(df, method=...)``:
 
 - ``haversine``: great-circle distance. Fast, vectorized, but ignores the actual
   subway network. Systematically *under*-estimates true travel distance.
-- ``network``: shortest-path distance along the actual MTA subway graph. Not
-  yet implemented — see ``network_distance`` for the planned interface.
+- ``network``: shortest-path distance along the actual MTA subway graph.
+  Implemented in :mod:`nycfare.network` (graph build + Dijkstra). Trips spanning
+  disconnected components fall back to haversine. See ``network_distance``.
 """
 from __future__ import annotations
 
